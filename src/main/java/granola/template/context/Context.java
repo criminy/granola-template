@@ -6,6 +6,10 @@ import java.util.Map;
 public class Context {
 	private Map<String,Object> variables = buildMap();
 	
+	public Map<String, Object> asMap() {
+		return variables;
+	}
+	
 	protected Map<String,Object> buildMap()
 	{
 		return new HashMap<String,Object>();

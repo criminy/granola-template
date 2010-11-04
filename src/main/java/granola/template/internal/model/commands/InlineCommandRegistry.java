@@ -29,6 +29,7 @@ public class InlineCommandRegistry {
 		inlineCommands.add("url");
 		inlineCommands.add("widthratio");
 		inlineCommands.add("templatetag");
+		inlineCommands.add("extends");
 	}
 	
 	public boolean isInlineCommand(String cmd)
