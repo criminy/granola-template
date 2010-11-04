@@ -27,13 +27,12 @@ public class CountingChildren implements Children
 		this.node = node;
 	}
 
-   @Test
    public void nullTest() {}
 }
 
 
 
-   public class IfTestCase
+   public class IfCase
    {
 	//These should be stateless
 	If instance = new If();
@@ -45,11 +44,11 @@ public class CountingChildren implements Children
 	Value v;
 	Writer wr = new OutputStreamWriter(System.out);
 
-   public IfTestCase() {
+   public IfCase() {
 
    }	
 
-	/*public IfTestCase(String x) {
+	/*public IfCase(String x) {
 		v = r.parse(x);
 	}*/
 	
@@ -59,7 +58,6 @@ public class CountingChildren implements Children
 		runner.invokeMethod(wr, ctx, instance, v,ch);
 	}
 
-   @Test
    public void nullTest() {}	
 
 }
@@ -70,7 +68,7 @@ public class CountingChildren implements Children
 	public void testIf()
 	{
 		{//1
-			IfTestCase tc = new IfTestCase();					
+			IfCase tc = new IfCase();					
 			tc.ctx.addObject("y",2);
 			tc.ctx.addObject("x",4);			
 			tc.run("x == y");
@@ -78,7 +76,7 @@ public class CountingChildren implements Children
 		}
 		
 		{//2
-			IfTestCase tc = new IfTestCase();					
+			IfCase tc = new IfCase();					
 			tc.ctx.addObject("y",2);
 			tc.ctx.addObject("x",2);			
 			tc.run("x == y");	
@@ -86,20 +84,20 @@ public class CountingChildren implements Children
 		}
 		
 		{//3
-			IfTestCase tc = new IfTestCase();
+			IfCase tc = new IfCase();
 			tc.ctx.addObject("x",4);			
 			tc.run("x");
 			assertEquals(tc.ch.node,"main");
 		}
 		
 		{//4
-			IfTestCase tc = new IfTestCase();		
+			IfCase tc = new IfCase();		
 			tc.run("x");		
 			assertEquals(tc.ch.node,"else");
 		}
 		
 		{//5
-			IfTestCase tc = new IfTestCase();
+			IfCase tc = new IfCase();
 			tc.ctx.addObject("x",4);
 			tc.ctx.addObject("y",6);		
 			tc.run("x != y");			
@@ -107,7 +105,7 @@ public class CountingChildren implements Children
 		}
 		
 		{//6
-			IfTestCase tc = new IfTestCase();
+			IfCase tc = new IfCase();
 			tc.ctx.addObject("x",4);
 			tc.ctx.addObject("y",4);
 			tc.run("x != y");	
@@ -115,7 +113,7 @@ public class CountingChildren implements Children
 		}
 		
 		{//7
-			IfTestCase tc = new IfTestCase();
+			IfCase tc = new IfCase();
 			tc.ctx.addObject("x",new Integer(4));
 			tc.ctx.addObject("y",4);
 			tc.run("x != y");
