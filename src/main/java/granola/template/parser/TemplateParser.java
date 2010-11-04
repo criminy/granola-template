@@ -51,7 +51,7 @@ public class TemplateParser {
 				t.addToSlot("main",new Echo(str));
 			}
 		}while(r);
-		assert(t == this);		
+		assert(t == template);		
 		Collections.reverse(t.getSlot("main").getChildren());
 		return new Template(template.normalize(ctx));
 	}

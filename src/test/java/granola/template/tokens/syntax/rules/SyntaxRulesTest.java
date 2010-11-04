@@ -15,6 +15,9 @@ import granola.template.tokens.syntax.objects.ValueList;
 
 import org.junit.Test;
 
+
+public class SyntaxRulesTest {
+
 class CountingChildren implements Children
 {
 	
@@ -28,11 +31,13 @@ class CountingChildren implements Children
    public void nullTest() {}
 }
 
-class IfTestCase
-{
+
+
+   class IfTestCase
+   {
 	//These should be stateless
-	static If instance = new If();
-	static SyntaxRules r = instance.getSyntax();
+	If instance = new If();
+	SyntaxRules r = instance.getSyntax();
 	
 	AutoboxingRunner runner = new AutoboxingRunner();
 	Context ctx = new Context();
@@ -59,8 +64,6 @@ class IfTestCase
 
 }
 
-
-public class SyntaxRulesTest {
 
 	
 	@Test
