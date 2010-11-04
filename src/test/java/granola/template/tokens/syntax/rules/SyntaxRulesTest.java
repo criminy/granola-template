@@ -39,13 +39,18 @@ class IfTestCase
 	CountingChildren ch = new CountingChildren();		
 	Value v;
 	Writer wr = new OutputStreamWriter(System.out);
-	
-	public IfTestCase(String x) {
+
+   public IfTestCase() {
+
+   }	
+
+	/*public IfTestCase(String x) {
 		v = r.parse(x);
-	}
+	}*/
 	
-	public void run()
+	public void run(String x)
 	{
+      v = r.parse(x);
 		runner.invokeMethod(wr, ctx, instance, v,ch);
 	}
 
@@ -62,55 +67,55 @@ public class SyntaxRulesTest {
 	public void testIf()
 	{
 		{//1
-			IfTestCase tc = new IfTestCase("x == y");					
+			IfTestCase tc = new IfTestCase();					
 			tc.ctx.addObject("y",2);
 			tc.ctx.addObject("x",4);			
-			tc.run();
+			tc.run("x == y");
 			assertEquals(tc.ch.node,"else");
 		}
 		
 		{//2
-			IfTestCase tc = new IfTestCase("x == y");					
+			IfTestCase tc = new IfTestCase();					
 			tc.ctx.addObject("y",2);
 			tc.ctx.addObject("x",2);			
-			tc.run();	
+			tc.run("x == y");	
 			assertEquals(tc.ch.node,"main");
 		}
 		
 		{//3
-			IfTestCase tc = new IfTestCase("x");
+			IfTestCase tc = new IfTestCase();
 			tc.ctx.addObject("x",4);			
-			tc.run();
+			tc.run("x");
 			assertEquals(tc.ch.node,"main");
 		}
 		
 		{//4
-			IfTestCase tc = new IfTestCase("x");		
-			tc.run();		
+			IfTestCase tc = new IfTestCase();		
+			tc.run("x");		
 			assertEquals(tc.ch.node,"else");
 		}
 		
 		{//5
-			IfTestCase tc = new IfTestCase("x != y");
+			IfTestCase tc = new IfTestCase();
 			tc.ctx.addObject("x",4);
 			tc.ctx.addObject("y",6);		
-			tc.run();			
+			tc.run("x != y");			
 			assertEquals(tc.ch.node,"main");
 		}
 		
 		{//6
-			IfTestCase tc = new IfTestCase("x != y");
+			IfTestCase tc = new IfTestCase();
 			tc.ctx.addObject("x",4);
 			tc.ctx.addObject("y",4);
-			tc.run();	
+			tc.run("x != y");	
 			assertEquals(tc.ch.node,"else");
 		}
 		
 		{//7
-			IfTestCase tc = new IfTestCase("x != y");
+			IfTestCase tc = new IfTestCase();
 			tc.ctx.addObject("x",new Integer(4));
 			tc.ctx.addObject("y",4);
-			tc.run();
+			tc.run("x != y");
 			assertEquals(tc.ch.node,"else");
 		}
 	}
