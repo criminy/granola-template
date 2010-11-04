@@ -18,7 +18,7 @@ import org.junit.Test;
 
 public class SyntaxRulesTest {
 
-class CountingChildren implements Children
+public class CountingChildren implements Children
 {
 	
 	public String node;
@@ -33,7 +33,7 @@ class CountingChildren implements Children
 
 
 
-   class IfTestCase
+   public class IfTestCase
    {
 	//These should be stateless
 	If instance = new If();
