@@ -12,6 +12,7 @@ import granola.template.tokens.syntax.impl.AutoboxingRunner;
 import granola.template.tokens.syntax.objects.Children;
 import granola.template.tokens.syntax.objects.Value;
 import granola.template.tokens.syntax.objects.ValueList;
+import granola.template.util.Runnable1F;
 
 import org.junit.Test;
 
@@ -21,13 +22,15 @@ public class SyntaxRulesTest {
 public class CountingChildren implements Children
 {
 	
+	
 	public String node;
 	
-	public void exec(Writer os, String node) {
+   public void nullTest() {}
+
+
+	public void exec(Writer os, String node, Runnable1F<Context> runnable) {
 		this.node = node;
 	}
-
-   public void nullTest() {}
 }
 
 

@@ -1,5 +1,10 @@
 package granola.template.parser;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+
 import granola.template.BaseTest;
 import granola.template.internal.model.TemplateModelTest;
 import granola.template.internal.model.template.BlockCommand;
@@ -13,11 +18,34 @@ import org.junit.Test;
 public class TemplateParserTest extends BaseTest{
 
 	@Test 
-	public void testConstruction()
+	public void testConstruction() throws IOException
+	{		
+		Template t = this.gctx.getParser().fromString(this.gctx,"hello {% if x %} x {{ y }} {% cycle 'one' 'two' %} {% if y %} {% else %} a {% endif %} b {% endif %} asdf");
+		OutputStreamWriter wr = new OutputStreamWriter(System.out);
+		this.gctx.getRunner().runTemplate(this.gctx, 
+				wr,
+				t,
+				ctx);
+		wr.flush();
+		wr.close();
+	}
+	
+	@Test
+	public void testTemplateInheritence() throws IOException
 	{
-		TemplateParser parser = new TemplateParser();
-		Template t = parser.fromString(this.gctx,"hello {% if %} x {{ y }} {% cycle 'one' 'two' %} {% if y %} {% else %} a {%endif %} b {% endif %} asdf");
-		TemplateModelTest.printTokens("", t.getImpl());				
+		Template t = this.gctx.getParser().fromInputStream(this.gctx,
+			TemplateParserTest.class.getClassLoader().getResourceAsStream(
+				"testTemplateInheritence/file.html"));
+		
+		this.ctx.addObject("message","testTemplateInheritenceMessage");
+		
+		OutputStreamWriter wr = new OutputStreamWriter(System.out);
+		this.gctx.getRunner().runTemplate(this.gctx,wr,t,ctx);
+		wr.flush();
+		
+		
+		TemplateModelTest.printTokens("",t.getImpl());
+		wr.close();
 	}
 	
 	@Test
@@ -38,5 +66,26 @@ public class TemplateParserTest extends BaseTest{
 
 		t = t.normalize(this.gctx);
 		TemplateModelTest.printTokens("",t);
+	}
+	
+	@Test
+	public void forXTest() throws FileNotFoundException, IOException
+	{
+		OutputStreamWriter wr = new OutputStreamWriter(System.out);
+		String x = "{% for x in y %} {{ x }} {% endfor %}";
+		Template t = this.gctx.getParser().fromString(
+				this.gctx,x);
+		
+			
+		this.ctx.addObject("y",Arrays.asList(1,2,3,4,5));
+			
+		
+		this.gctx.getRunner().runTemplate(this.gctx,wr,t,ctx);
+		wr.flush();
+			
+			
+		TemplateModelTest.printTokens("",t.getImpl());
+		wr.close();
+
 	}
 }

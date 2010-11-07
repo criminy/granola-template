@@ -10,6 +10,10 @@ public class InlineCommand extends LeafNodeImpl {
 		this.content = content.trim();
 	}
 	
+	public String getContent() {
+		return content;
+	}
+	
 	@Override
 	public String toString() {
 		return "InlineCommand(" + content + ")";

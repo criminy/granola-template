@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TemplateCommand {
 
-	public List<String> exec(Writer wr,Context ctx,String buffer);
+	public List<INodeRunner> exec(Writer wr,Context ctx,String buffer);
 	
 	public String getSupportedSlots();
 }

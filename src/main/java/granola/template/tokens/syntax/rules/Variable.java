@@ -14,7 +14,7 @@ import granola.template.tokens.syntax.objects.VariableReference;
 public class Variable implements SyntaxRules{
 	
 	public Value parse(String stringToParse) {
-		if(stringToParse.matches("^[a-zA-Z]+[a-zA-Z0-9_]*")) {
+		if(stringToParse.matches("^[a-zA-Z]+[a-zA-Z0-9_\\.]*")) {
 			this.name = stringToParse;
 			return new VariableReference(this.name);
 		}

@@ -14,15 +14,18 @@ public class SlotTreeImpl extends BaseToken
 	/**
 	 * Adds a token object as a child under a specific slot.
 	 */
-	public void addToSlot(String slotName, Token t) {
+	public void addToSlot(String slotName, Token t) {		
 		Slot<Token,String> slot = null;
 		if((slot = children.get(slotName)) == null)
 		{
 			slot = new Slot<Token,String>(slotName);
 			children.put(slotName,slot);
 		}
-		slot.getChildren().add(t);
-		t.setParent(this);
+		if(!slot.isLocked())
+		{
+			slot.getChildren().add(t);
+			t.setParent(this);
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -51,6 +54,12 @@ public class SlotTreeImpl extends BaseToken
 	 * @see granola.template.model.template.tree.SlotTree#lockSlot(java.lang.String)
 	 */
 	public void lockSlot(String slotName) {
+		Slot s = getSlot(slotName);
+		if(s == null)
+		{
+			s = new Slot<Token,String>(slotName);
+			this.children.put(slotName,s);			
+		}
 		getSlot(slotName).setLocked(true);
 	}
 

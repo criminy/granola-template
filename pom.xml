@@ -1,10 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+   <parent>
+      <groupId>granola</groupId>
+      <artifactId>granola-parent</artifactId>
+      <version>0.5-SNAPSHOT</version>
+   </parent>
 	<groupId>granola</groupId>
 	<artifactId>granola-template</artifactId>
-	<version>0.3-SNAPSHOT</version>
+	<version>${project.parent.version}</version>
 	<packaging>jar</packaging>
 
 	<name>granola-template-wip</name>
@@ -19,6 +23,16 @@
 			<artifactId>junit</artifactId>
 			<version>4.4</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
 		</dependency>
 	</dependencies>
 

@@ -40,18 +40,19 @@ public class TemplateRunner {
 			TemplateCommand tc = gctx.getTemplateCommand(bc.getCommandName());
 						
 			
-			List<String> nodes = tc.exec(os, ctx, ListUtils.join(ListUtils.cdr(bc.getCommand().split(" "))," ") );
+			List<INodeRunner> nodes = tc.exec(os, ctx, ListUtils.join(ListUtils.cdr(bc.getCommand().split(" "))," ") );
 						
-			for(String node : nodes) {
-				//if(bc.supportsSlot(node)) {
-				Slot<Token,String> sl = bc.getSlot(node);
+			for(INodeRunner node : nodes) {
+				String nameName = node.getName();
+				Slot<Token,String> sl = bc.getSlot(nameName);
 				if(sl != null) {
 					for(Token t : sl.getChildren())
 					{
+						if(node.getOnInvoke() != null) 
+							node.getOnInvoke().run(ctx);
 						runToken(gctx,os,t,ctx);
 					}
 				}
-				//}
 			}
 		}	
 		if(tok instanceof Expression)

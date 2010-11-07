@@ -1,5 +1,6 @@
 package granola.template.context;
 
+import granola.template.commands.Block;
 import granola.template.commands.For;
 import granola.template.commands.If;
 import granola.template.exec.SyntaxRulesTemplateCommand;
@@ -87,6 +88,7 @@ public class GranolaContext {
 	public GranolaContext() {
 		this.addCommand("if",new If());
 		this.addCommand("for",new For());
+		this.addCommand("block",new Block());
 	}
 	
 }

@@ -50,9 +50,9 @@ public class If extends SyntaxRulesTemplateCommand{
 	{
 		if(variable != null)
 		{
-			children.exec(wr,"main");
+			children.exec(wr,"main",null);
 		}else{
-			children.exec(wr,"else");
+			children.exec(wr,"else",null);
 		}
 	}
 	
@@ -60,9 +60,9 @@ public class If extends SyntaxRulesTemplateCommand{
 	{
 		if(var1.equals(var2))
 		{
-			children.exec(wr,"main");			
+			children.exec(wr,"main",null);			
 		}else{
-			children.exec(wr,"else");			
+			children.exec(wr,"else",null);			
 		}
 	}
 	
@@ -70,9 +70,9 @@ public class If extends SyntaxRulesTemplateCommand{
 	{
 		if(!var1.equals(var2))
 		{
-			children.exec(wr,"main");				
+			children.exec(wr,"main",null);				
 		}else{
-			children.exec(wr,"else");
+			children.exec(wr,"else",null);
 		}
 	}
 	
@@ -80,9 +80,9 @@ public class If extends SyntaxRulesTemplateCommand{
 	{
 		if(var1 < var2)
 		{
-			children.exec(wr,"main");
+			children.exec(wr,"main",null);
 		}else{
-			children.exec(wr,"else");
+			children.exec(wr,"else",null);
 		}
 	}
 	
@@ -90,9 +90,9 @@ public class If extends SyntaxRulesTemplateCommand{
 	{
 		if(var1 <= var2)
 		{
-			children.exec(wr,"main");
+			children.exec(wr,"main",null);
 		}else{
-			children.exec(wr,"else");
+			children.exec(wr,"else",null);
 		}
 	}
 	
@@ -100,9 +100,9 @@ public class If extends SyntaxRulesTemplateCommand{
 	{
 		if(var1 >= var2)
 		{
-			children.exec(wr,"main");
+			children.exec(wr,"main",null);
 		}else{
-			children.exec(wr,"else");
+			children.exec(wr,"else",null);
 		}
 	}
 	
@@ -111,9 +111,9 @@ public class If extends SyntaxRulesTemplateCommand{
 	{
 		if(var1 > var2)
 		{
-			children.exec(wr,"main");
+			children.exec(wr,"main",null);
 		}else{
-			children.exec(wr,"else");
+			children.exec(wr,"else",null);
 		}
 	}
 	

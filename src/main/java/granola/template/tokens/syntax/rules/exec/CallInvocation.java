@@ -9,6 +9,9 @@ import java.io.Writer;
 import java.lang.reflect.*;
 import java.util.*;
 
+import org.apache.log4j.LogSF;
+import org.apache.log4j.Logger;
+
 /**
  * Stateful object which represents a call to an instance method
  * with parameters.
@@ -18,7 +21,8 @@ import java.util.*;
  *
  */
 public class CallInvocation 
-{
+{	
+	private Logger log = Logger.getLogger(CallInvocation.class);
 	private Context ctx;
 	private Object instance;
 	private Method method;
@@ -49,21 +53,17 @@ public class CallInvocation
 	}
 	
 	public Object invoke(Writer wr,Children children)
-	{
+	{		
 		List<Object> args = new LinkedList<Object>();
 		args.add(ctx);
 		args.add(wr);
 		args.addAll(this.arguments);
 		args.add(children);
+		
+		for(Object o : args)
+			log.debug(o);
+		
 		try {
-			for(Object o : args)
-			{
-				System.out.print("+ " + o + " ");
-				if(o != null) 
-					System.out.println(o.getClass());
-				else
-					System.out.println();
-			}
 			return method.invoke(instance, args.toArray());
 		}catch(Exception exn)
 		{

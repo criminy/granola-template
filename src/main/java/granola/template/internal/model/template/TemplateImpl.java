@@ -71,7 +71,7 @@ public class TemplateImpl extends SlotTreeImpl {
 				}
 			}
 		}
-		printTokens("",newParent);
+		//printTokens("",newParent);
 		return newParent;
 	}
 	public static void printTokens(String padding,Token t)
